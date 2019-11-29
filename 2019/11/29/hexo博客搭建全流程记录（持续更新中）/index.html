@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://kazefeeder.cn').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.5.0',
+    exturl: true,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+
+  <meta name="description" content="自己搭建的笔记">
+<meta name="keywords" content="hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo博客搭建全流程记录（持续更新中）">
+<meta property="og:url" content="http:&#x2F;&#x2F;kazefeeder.cn&#x2F;2019&#x2F;11&#x2F;29&#x2F;hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%85%A8%E6%B5%81%E7%A8%8B%E8%AE%B0%E5%BD%95%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD%EF%BC%89&#x2F;index.html">
+<meta property="og:site_name" content="Kazefeeder">
+<meta property="og:description" content="自己搭建的笔记">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-29T08:02:21.046Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://kazefeeder.cn/2019/11/29/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%85%A8%E6%B5%81%E7%A8%8B%E8%AE%B0%E5%BD%95%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD%EF%BC%89/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>hexo博客搭建全流程记录（持续更新中） | Kazefeeder</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kazefeeder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">给岁月以文明，给时间以生命</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://kazefeeder.cn/2019/11/29/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%85%A8%E6%B5%81%E7%A8%8B%E8%AE%B0%E5%BD%95%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Kazefeeder">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kazefeeder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          hexo博客搭建全流程记录（持续更新中）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-11-29 15:48:53 / 修改时间：16:02:21" itemprop="dateCreated datePublished" datetime="2019-11-29T15:48:53+08:00">2019-11-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%86%99%E4%BD%9C/" itemprop="url" rel="index">
+                    <span itemprop="name">写作</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%86%99%E4%BD%9C/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">自己搭建的笔记</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ul>
+<li>下载node.js并安装，默认会安装npm。(官网下载安装）</li>
+<li>下载安装git（官网下载安装）</li>
+<li>下载安装hexo。方法：打开cmd 运行npm install -g hexo</li>
+</ul>
+<h3 id="搭建本地的静态博客"><a href="#搭建本地的静态博客" class="headerlink" title="搭建本地的静态博客"></a>搭建本地的静态博客</h3><h4 id="网站模板生成"><a href="#网站模板生成" class="headerlink" title="网站模板生成"></a>网站模板生成</h4><p>新建一个文件夹，如hexo，进入这个文件夹后，右键打开“git Bash Here”，打开git，输入 hexo init，即可生成网站模板。<br>最后运行：hexo server （可跳过）（运行程序，访问本地localhost:4000可以看到博客已经搭建成功，）</p>
+<h4 id="主题安装"><a href="#主题安装" class="headerlink" title="主题安装"></a>主题安装</h4><p>访问<span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3RoZW1lcy8=" title="https://hexo.io/themes/">主题列表<i class="fa fa-external-link"></i></span>，选择自己喜欢的主题，点进去按照主题的之时安装。<br>一般的命令为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">git clone https://github.com/iissnan/hexo-theme-next.git</span><br></pre></td></tr></table></figure>
+
+<p>打开站点__config.yml文件，将themes修改下载到的主题文件夹的名字</p>
+<ul>
+<li>hexo g</li>
+<li>hexo s(本地端口看效果）</li>
+<li>hexo d(推送到github上全网展示)</li>
+</ul>
+<h4 id="更新博客内容"><a href="#更新博客内容" class="headerlink" title="更新博客内容"></a>更新博客内容</h4><h5 id="更新文章"><a href="#更新文章" class="headerlink" title="更新文章"></a>更新文章</h5><ol>
+<li>在MyBlog目录下执行：hexo new “我的第一篇文章”，会在source_posts文件夹内生成一个.md文件。</li>
+<li>编辑该文件（遵循Markdown规则）</li>
+<li>修改起始字段<blockquote>
+<p>起始字段就是在md文件顶上自动生成的—中间的部分，官网上英文的称呼叫做 front-matter，这里面包括日期，标签，分类，密码，摘要等内容，用的时候分类、标签等功能要先添加，否则会出现网站渲染失败的情况。</p>
+</blockquote>
+</li>
+</ol>
+<ol start="4">
+<li>编写正文内容（MakeDown）</li>
+<li>hexo clean 删除本地静态文件（Public目录），可不执行。</li>
+<li>hexo g 生成本地静态文件（Public目录）</li>
+<li>hexo deploy 将本地静态文件推送至github（hexo d）</li>
+</ol>
+<h5 id="给文章增加标签"><a href="#给文章增加标签" class="headerlink" title="给文章增加标签"></a>给文章增加标签</h5><ul>
+<li>打开标签功能<br>在blog目录下启动git<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page tag</span><br></pre></td></tr></table></figure>
+这候你的source/下生成 tags/index.md 文件，我们将其打开，然后把它改成<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">type: &quot;tags&quot;</span><br><span class="line">comment: false</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>这时候你要为你的文章打上标签就可以在文章的头部写上：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tags: </span><br><span class="line"><span class="bullet">   - </span>Tag1</span><br><span class="line"><span class="bullet">   - </span>Tag2</span><br><span class="line"><span class="bullet">   - </span>Tag3</span><br></pre></td></tr></table></figure>
+
+<p>进入主题的config文件，找到menu</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">menu:</span><br><span class="line">  home: / || home</span><br><span class="line">  about: /about/ || user</span><br><span class="line">  tags: /tags/ || tags</span><br><span class="line">  categories: /categories/ || th</span><br><span class="line">  archives: /archives/ || archive</span><br><span class="line">  #schedule: /schedule/ || calendar</span><br><span class="line">  #sitemap: /sitemap.xml || sitemap</span><br><span class="line">  commonweal: /404/ || heartbeat</span><br></pre></td></tr></table></figure>
+<p>前面的#是注释的意思，删掉即代码生效，他的作用是在主页是否显示这些栏目，想用什么功能自己斟酌修改。</p>
+<h5 id="给文章添加分类"><a href="#给文章添加分类" class="headerlink" title="给文章添加分类"></a>给文章添加分类</h5><p>分类，归档，是你博客的特性之一。</p>
+<ul>
+<li>打开分类功能：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>这说你的source目录下生成 categories/index.md 文件，我们将其打开，把它改成：     </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">type: &quot;categories&quot;</span><br><span class="line">comments: false</span><br></pre></td></tr></table></figure>
+<p>复制代码这时候你就可以给你的文章归类存档了，使用方式就是在你的文章的头部加上：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">categories:</span><br><span class="line">    - 分类1</span><br><span class="line">    - 分类2</span><br></pre></td></tr></table></figure>
+
+<h3 id="向网络上部署博客"><a href="#向网络上部署博客" class="headerlink" title="向网络上部署博客"></a>向网络上部署博客</h3><h4 id="将博客与Github关联"><a href="#将博客与Github关联" class="headerlink" title="将博客与Github关联"></a>将博客与Github关联</h4><ul>
+<li><p>在Github上创建名字为XXX.github.io的项目，XXX为自己的github用户名。</p>
+</li>
+<li><p>打开本地的MyBlog文件夹项目内的_config.yml配置文件，将其中的type设置为git</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:  </span><br><span class="line">    type: git    </span><br><span class="line">    repository: https://github.com/yourname/yourname.github.io.git</span><br><span class="line">    branch: master</span><br></pre></td></tr></table></figure>
+<p>记得替换上面的yourname,而且冒号后面有空格<br>本文中所有的yourname都是指你的github账号id</p>
+</li>
+<li><p>运行：npm install hexo-deployer-git –save</p>
+</li>
+<li><p>运行：hexo g（本地生成静态文件）</p>
+</li>
+<li><p>运行：hexo d（将本地静态文件推送至Github）<br>此时，打开浏览器，访问<span class="exturl" data-url="aHR0cDovL3lvdXJuYW1lLmdpdGh1Yi5pbw==" title="http://yourname.github.io">http://yourname.github.io<i class="fa fa-external-link"></i></span></p>
+<h4 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h4></li>
+</ul>
+<p>博客已经搭建好，也能通过github的域名访问，但总归还是用自己的域名比较舒服。因为我们需要设置将自己的域名绑定到github这个博客项目上。<br>域名提供商设置添加2条A记录：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ @—&gt;192.30.252.154</span><br><span class="line">$ @—&gt;192.30.252.153</span><br><span class="line">$ 添加一条CNAME记录：</span><br><span class="line">$ CNAME—&gt;yourname.github.io</span><br></pre></td></tr></table></figure>
+<p>博客添加CNAME文件 配置完域名解析后，进入博客目录，在source目录下新建CNAME文件，写入域名，如：kazefeeder.cn<br>进入项目仓库—settings，向下找到Github Pages，将 Custom domain 添入自己的域名并保存</p>
+<ul>
+<li>运行：hexo g</li>
+<li>运行：hexo d(也可以直接: hexo d -g)</li>
+</ul>
+<h3 id="其他一些实用的美化和功能"><a href="#其他一些实用的美化和功能" class="headerlink" title="其他一些实用的美化和功能"></a>其他一些实用的美化和功能</h3><h4 id="加密文章"><a href="#加密文章" class="headerlink" title="加密文章"></a>加密文章</h4><p>使用插件 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01pa2VDb2Rlci9oZXhvLWJsb2ctZW5jcnlwdC9ibG9iL21hc3Rlci9SZWFkTWUuemgubWQ=" title="https://github.com/MikeCoder/hexo-blog-encrypt/blob/master/ReadMe.zh.md">hexo-blog-encrypt<i class="fa fa-external-link"></i></span><br>详细的方法在它的官方github文档中都有介绍</p>
+<h4 id="添加点击特效"><a href="#添加点击特效" class="headerlink" title="添加点击特效"></a>添加点击特效</h4><p>将以下代码放到主题源文件目录下，如 /themes/yilia/source/js/ 下新建文件 click-word.js，代码见下文。<br>下载jquery文件<span class="exturl" data-url="aHR0cHM6Ly9jb2RlLmpxdWVyeS5jb20vanF1ZXJ5LTMuMy4xLm1pbi5qcw==" title="https://code.jquery.com/jquery-3.3.1.min.js">目前最新版本<i class="fa fa-external-link"></i></span>，放到同一目录下（个人喜好）。<br>修改布局文件，/themes/next/layout/_layout.ejs，在末尾body中添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 页面点击特效 --&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;/js/jquery-3.3.1.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;/js/click-word.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>提到的所有代码<span class="exturl" data-url="aHR0cHM6Ly94aHllYXguZ2l0aHViLmlvLzIwMTgvMTEvMzAvY2xpY2std29yZC8=" title="https://xhyeax.github.io/2018/11/30/click-word/">在这里<i class="fa fa-external-link"></i></span></p>
+<h3 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h3><ol>
+<li><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3poLWNuL2RvY3Mv" title="https://hexo.io/zh-cn/docs/">https://hexo.io/zh-cn/docs/<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9tZS5pZGVhbGxpLmNvbS9wb3N0L2U4ZDEzZmMuaHRtbA==" title="https://me.idealli.com/post/e8d13fc.html">https://me.idealli.com/post/e8d13fc.html<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly94aHllYXguZ2l0aHViLmlvLzIwMTgvMTEvMzAvY2xpY2std29yZC8=" title="https://xhyeax.github.io/2018/11/30/click-word/">https://xhyeax.github.io/2018/11/30/click-word/<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cueW91dHViZS5jb20vY2hhbm5lbC9VQzlQWl9qMzBKaGZnak9ySlpBdFl6Unc=" title="https://www.youtube.com/channel/UC9PZ_j30JhfgjOrJZAtYzRw">https://www.youtube.com/channel/UC9PZ_j30JhfgjOrJZAtYzRw<i class="fa fa-external-link"></i></span></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/hexo/" rel="tag"># hexo</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/11/27/%E5%85%B3%E4%BA%8Ecannot%20get/" rel="prev" title="hexo博客出现“Cannot GET /”怎么解决">
+      <i class="fa fa-chevron-left"></i> hexo博客出现“Cannot GET /”怎么解决
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搭建本地的静态博客"><span class="nav-number">2.</span> <span class="nav-text">搭建本地的静态博客</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网站模板生成"><span class="nav-number">2.1.</span> <span class="nav-text">网站模板生成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主题安装"><span class="nav-number">2.2.</span> <span class="nav-text">主题安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更新博客内容"><span class="nav-number">2.3.</span> <span class="nav-text">更新博客内容</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#更新文章"><span class="nav-number">2.3.1.</span> <span class="nav-text">更新文章</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#给文章增加标签"><span class="nav-number">2.3.2.</span> <span class="nav-text">给文章增加标签</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#给文章添加分类"><span class="nav-number">2.3.3.</span> <span class="nav-text">给文章添加分类</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#向网络上部署博客"><span class="nav-number">3.</span> <span class="nav-text">向网络上部署博客</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#将博客与Github关联"><span class="nav-number">3.1.</span> <span class="nav-text">将博客与Github关联</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#绑定域名"><span class="nav-number">3.2.</span> <span class="nav-text">绑定域名</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他一些实用的美化和功能"><span class="nav-number">4.</span> <span class="nav-text">其他一些实用的美化和功能</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#加密文章"><span class="nav-number">4.1.</span> <span class="nav-text">加密文章</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加点击特效"><span class="nav-number">4.2.</span> <span class="nav-text">添加点击特效</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文档"><span class="nav-number">5.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Kazefeeder</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kazefeeder</span>
+</div>
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Gemini</span> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/js/click-word.js"></script>
+
+
+</body>
+</html>
